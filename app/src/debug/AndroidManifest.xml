@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+      仅 debug 构建注册自测入口：release 包里不存在这些 Activity，
+      避免把"可被外部拉起的目录遍历界面"带进正式包。
+    -->
+    <application>
+        <activity
+            android:name=".ui.SelfTestActivity"
+            android:exported="true"
+            android:label="格式自测" />
+        <activity
+            android:name=".ui.HdrProbeActivity"
+            android:exported="true"
+            android:label="HDR 探测" />
+        <activity
+            android:name=".ui.SampleVideoGenActivity"
+            android:exported="true"
+            android:label="测试视频生成" />
+        <activity
+            android:name=".ui.HeicSampleGenActivity"
+            android:exported="true"
+            android:label="HEIC 样片生成" />
+    </application>
+
+</manifest>
