@@ -1,0 +1,8 @@
+{
+    "version":  "V1.99",
+    "notes":  "这是测试用更新：\n- 验证启动检查\n- 验证下载与 SHA-256 校验\n- 验证安装器调起",
+    "publishedAt":  "2026-11-26",
+    "sha256":  "764113E173C9FCEAAFBBAF4CDB145102F17B0916FC75271382B53F0E68FE78C7",
+    "sizeBytes":  37805101,
+    "apkUrl":  "https://github.com/Jadis038/Lightfolio/releases/download/v1.99/yingce-v1.42.apk"
+}
