@@ -25,8 +25,14 @@ object UpdateChecker {
     /**
      * 首选更新源：仓库里的静态 JSON（走 raw CDN，**没有 API 配额限制**，匿名可读）。
      * 之前直连 api.github.com 会被限流返回 403，所以主路径改成读这个文件。
+     *
+     * 注意：raw CDN 有约 5 分钟缓存，直接取会读到旧版本号。
+     * 这里追加时间戳参数绕过缓存，保证发版后立刻可见。
      */
-    private const val RAW_VERSION_JSON = "https://raw.githubusercontent.com/$REPO/main/version.json"
+    private fun rawVersionUrl(): String {
+        val ts = System.currentTimeMillis() / 1000
+        return "https://raw.githubusercontent.com/$REPO/main/version.json?t=$ts"
+    }
 
     /** 兜底更新源：GitHub Releases API（匿名每小时 60 次，可能 403）。 */
     private const val API_LATEST = "https://api.github.com/repos/$REPO/releases/latest"
@@ -82,7 +88,7 @@ object UpdateChecker {
     }
 
     private fun checkViaJson(local: String): UpdateInfo? {
-        val obj = JSONObject(httpGet(RAW_VERSION_JSON))
+        val obj = JSONObject(httpGet(rawVersionUrl()))
         val remote = obj.optString("version", "")
         if (remote.isBlank()) return null
         if (!Versions.isNewer(remote, local)) return null
