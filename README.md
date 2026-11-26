@@ -17,9 +17,9 @@
 | 角色 | 说明 |
 |---|---|
 | 作者 | **Галин** |
-| 开发协助 | DeepSeek 系列模型（代码编写、调试、验证） |
+| 开发协助 | DeepSeek、GLM系列模型（代码编写、调试、验证） |
 | 应用图标 | **Ho Wing Own** |
-| 测试机型 | OPPO Find X10 Pro Max、SAMSUNG Galaxy S24 Ultra |
+| 测试机型 | OPPO Find X10 Pro Max |
 | 已实测 RAW 机型 | 佳能 5D Mark III、尼康 Z8、大疆 Air 3、索尼 α6700、OPPO Find X10 Pro Max、三星 S24 Ultra |
 
 ---
