@@ -21,8 +21,8 @@ android {
         applicationId = "com.yingce.gallery"
         minSdk = 29
         targetSdk = 36
-        versionCode = 27
-        versionName = "V1.42"
+        versionCode = 28
+        versionName = "V1.50"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         // 发布要求：仅 arm64-v8a。

@@ -1,8 +1,8 @@
 {
-    "version":  "V1.99",
-    "notes":  "这是测试用更新：\n- 验证启动检查\n- 验证下载与 SHA-256 校验\n- 验证安装器调起",
+    "version":  "V1.50",
+    "apkUrl":  "https://github.com/Jadis038/Lightfolio/releases/download/v1.50/yingce-v1.50.apk",
+    "sizeBytes":  37854317,
+    "sha256":  "C93E6B3DBD99A9AA2ABEA6AFA8B5F9E7AE62AF2FCBF2C8005F3371B212EB6CB6",
     "publishedAt":  "2026-11-26",
-    "sha256":  "764113E173C9FCEAAFBBAF4CDB145102F17B0916FC75271382B53F0E68FE78C7",
-    "sizeBytes":  37805101,
-    "apkUrl":  "https://github.com/Jadis038/Lightfolio/releases/download/v1.99/yingce-v1.42.apk"
+    "notes":  "V1.50 新增应用内更新：\n• 启动时自动检查新版本（可在应用信息中关闭，关闭后完全不联网）\n• 发现新版后可一键下载并校验 SHA-256，再调起系统安装器\n• 应用信息页新增「检查更新」与「启动自动检查」开关"
 }

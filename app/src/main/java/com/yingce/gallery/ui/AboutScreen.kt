@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
  * 文案按用户给定内容原样展示；后续如需补充版本号/许可信息，加在这里。
  */
 @Composable
-fun AboutScreen(onBack: () -> Unit) {
+fun AboutScreen(onBack: () -> Unit, onShowUpdate: (com.yingce.gallery.data.UpdateChecker.UpdateInfo) -> Unit = {}) {
     // 返回键/侧滑手势先退出本页，不要直接退出应用
     androidx.activity.compose.BackHandler(enabled = true) { onBack() }
     Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
@@ -50,6 +50,23 @@ fun AboutScreen(onBack: () -> Unit) {
                     Spacer(Modifier.height(14.dp))
                     InfoLine("已支持的照片格式：")
                     InfoLine("JPEG、PNG、AVIF、HEIC、TIFF（暂不支持LZW压缩的TIFF）")
+                }
+            }
+
+            // 版本与更新（V1.50 新增：唯一联网功能）
+            YingceGlass.GlassBox(modifier = Modifier.fillMaxWidth().padding(vertical = 6.dp)) {
+                Column(modifier = Modifier.padding(20.dp)) {
+                    InfoLine("版本：${com.yingce.gallery.data.UpdateChecker.localVersionName(androidx.compose.ui.platform.LocalContext.current)}")
+                    Spacer(Modifier.height(10.dp))
+                    ManualUpdateCheckSection(onFound = onShowUpdate)
+                    Spacer(Modifier.height(10.dp))
+                    Text(
+                        "联网说明：本软件唯一的联网用途是检查更新（访问 GitHub）。" +
+                            "关闭「启动自动检查」后，App 不会发起任何网络请求。" +
+                            "不收集、不上传任何个人数据。",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
                 }
             }
         }

@@ -80,6 +80,8 @@ fun YingceRoot() {
     // 0 = 总相册，1 = 相册
     var tab by remember { mutableIntStateOf(0) }
     var showAbout by remember { mutableStateOf(false) }
+    // 更新检查结果（null = 无更新/未检查）
+    var updateInfo by remember { mutableStateOf<com.yingce.gallery.data.UpdateChecker.UpdateInfo?>(null) }
     var showNewAlbum by remember { mutableStateOf(false) }
     var albumNames by remember { mutableStateOf(AlbumStore.load(context)) }
     var openAlbum by remember { mutableStateOf<String?>(null) }
@@ -230,6 +232,10 @@ fun YingceRoot() {
     // 没有任何控件再用背景模糊 —— 采样循环（含每帧离屏录制）也一并删除，
     // 这正是上一版滚动掉帧的来源。
     YingceGlass.backdropEnabled = false
+    // 启动时检查更新：开关打开才联网
+    AutoUpdateCheck(enabled = com.yingce.gallery.data.UpdatePrefs.isAutoCheckEnabled(context)) { info ->
+        updateInfo = info
+    }
 
     Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
         Box(modifier = Modifier.fillMaxSize().systemBarsPadding()) {
@@ -434,8 +440,18 @@ fun YingceRoot() {
                     },
                 )
             }
+            updateInfo?.let { info ->
+                UpdateDialog(info = info, onDismiss = { updateInfo = null })
+            }
+
             if (showAbout) {
-                AboutScreen(onBack = { showAbout = false })
+                AboutScreen(
+                    onBack = { showAbout = false },
+                    onShowUpdate = { info ->
+                        showAbout = false
+                        updateInfo = info
+                    },
+                )
             }
 
             if (showNewAlbum) {

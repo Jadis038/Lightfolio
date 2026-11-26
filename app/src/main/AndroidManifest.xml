@@ -3,12 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <!--
-      零网络约束不变：本项目仍然没有 INTERNET 权限。
+      网络说明（V1.50 起）：
+      本项目**唯一**的联网用途是「检查更新」——访问 api.github.com 读取本仓库的 Release 信息，
+      以及在用户同意后从 GitHub 下载新版安装包。
+      - 用户可在「应用信息」里关闭「启动自动检查」，关闭后 App 完全不发起任何网络请求
+      - 不集成任何统计/广告/崩溃上报 SDK，不上报任何用户数据
+      - 其余全部功能（导入、相册、查看、EXIF、RAW、地理编码）仍然完全离线
+
       以下只读媒体权限是 M3 引入的"相册来源"所必需：
       - READ_MEDIA_IMAGES                 Android 13+ 读全部图片
       - READ_MEDIA_VISUAL_USER_SELECTED   Android 14+ 用户只授权"部分照片"
       - READ_EXTERNAL_STORAGE             Android 12 及以下
     -->
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 下载完成后调起系统安装器 -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
